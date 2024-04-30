@@ -27,7 +27,7 @@ async function newStudent(){
 }
 
 function editUsedStudents(student){
-    fs.appendFile('./usedStudents.txt', '\n' + student)
+    fs.appendFile('./usedStudents.txt',  student +'\n')
 }
 
 
