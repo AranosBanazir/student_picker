@@ -1,10 +1,12 @@
 import spin from 'cli-spinners'
 import ora from 'ora'
 import fs from 'fs/promises'
+import color from 'colors'
+
 
 const colors = [ 'red' , 'green' , 'yellow' , 'blue' , 'magenta' , 'cyan', 'white']
 const students = ['Veysel', 'Jake', 'Nick', 'Kent', 'Caleb', 'Parker', 'Tom', 'Meg', 'Larry', 'Ryan']
-const spinner = ora({text: 'Picking a student...', spinner: spin.arrow3,}).start();
+const spinner = ora({text: 'Picking a student...', spinner: spin.line,}).start();
 let usedStudents;
 
 async function getUsedStudents(){
@@ -31,24 +33,23 @@ function editUsedStudents(student){
 }
 
 
-setInterval(() =>{
+const colorChange = setInterval(() =>{
     const cIndex = Math.floor(Math.random() * colors.length)
     spinner.color = colors[cIndex]
 }, 300)
 
 
 setTimeout(async function(){
-    
+    clearInterval(colorChange)
     const student = await newStudent()
 
-    spinner.text = `The chosen student is: ${student}`
     
+    spinner.text = ''
+    spinner.spinner = {interval: 80, frames: [`==>  `.brightGreen + `The chosen student is: `.white + `${student}`.green]}
     editUsedStudents(student)
     
 }, 2000)
 
 setTimeout(()=>{
-    spinner.color = 'red'
-    spinner.spinner = spin.arrow3
     process.exit(0)
-}, 3000)
+}, 2600)

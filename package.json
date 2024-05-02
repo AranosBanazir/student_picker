@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "cli-spinners": "^2.9.2",
+    "colors": "^1.4.0",
     "ora": "^8.0.1"
   }
 }
